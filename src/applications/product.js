@@ -6,11 +6,11 @@ export const getProducts = async (req, res, next) => {
     const { categoryId } = req.query;
     if (!categoryId) {
       const data = await Product.find();
-      return res.status(200).json(data).send();
+      return res.status(200).json(data);
     }
 
     const data = await Product.find({ categoryId });
-    return res.status(200).json(data).send();
+    return res.status(200).json(data);
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,7 @@ export const getProduct = async (req, res, next) => {
       throw new NotFoundError("Product not found");
     }
 
-    return res.status(200).json(product).send();
+    return res.status(200).json(product);
   } catch (error) {
     next(error);
   }
