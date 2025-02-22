@@ -18,15 +18,12 @@ app.use(express.json()); // For parsing JSON requests
 app.use(clerkMiddleware());
 app.use(cors({ origin: "http://localhost:5173" }));
 
-// app.use((req, res, next) => {
-//     console.log("Request Recieved");
-//     console.log(req.method, req.url);
-// })
 
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoryRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/payments", paymentsRouter);
+
 app.use(globalErrorHandlingMiddleware);
 
 connectDB();

@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 export const connectDB = async () => {
   try {
     const connectionString = process.env.MONGODB_URI;
-
     if (!connectionString) {
       throw new Error("No connection string found");
     }

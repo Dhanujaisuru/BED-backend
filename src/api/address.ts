@@ -4,14 +4,16 @@ import {
   getAddress,
   updateAddress,
   deleteAddress,
-} from "../applications/address";
-const router = express.Router();
-// Create a new address
-router.post("/", createAddress);
-// Get an address by ID
-router.get("/:id", getAddress);
-// Update an address
-router.put("/:id", updateAddress);
-// Delete an address
-router.delete("/:id", deleteAddress);
-export default router;
+} from "./../applications/address";
+import { isAuthenticated } from "./middleware/authentication-middleware";
+
+export const addressRouter = express.Router();
+
+addressRouter.route("/").post(isAuthenticated, createAddress);
+addressRouter
+  .route("/:id")
+  .get(isAuthenticated, getAddress)
+  .put(isAuthenticated, updateAddress)
+  .delete(isAuthenticated, deleteAddress);
+
+export default addressRouter;

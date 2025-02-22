@@ -7,7 +7,6 @@ export const handleWebhook = async (
   next: NextFunction
 ) => {
   const { type, data } = req.body;
-
   console.log(type, data);
 
   if (type === "succeeded") {

@@ -1,5 +1,5 @@
 import express from "express";
-import { handleWebhook } from "../applications/payment";
+import { handleWebhook } from "./../applications/payment";
 
 export const paymentsRouter = express.Router();
 
