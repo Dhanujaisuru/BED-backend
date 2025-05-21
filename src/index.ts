@@ -13,10 +13,19 @@ import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 import { orderRouter } from "./api/order";
 import { paymentsRouter } from "./api/payment";
+import { handleWebhook } from "./applications/payment";
+import bodyParser from "body-parser";
 
-app.use(express.json()); // For parsing JSON requests
+app.post(
+    "/api/stripe/webhook",
+    bodyParser.raw({ type: "application/json" }),
+    handleWebhook
+  );
+
+app.use(express.json());
 app.use(clerkMiddleware());
-app.use(cors({ origin: "https://fed-storefront-frontend-dhanuja.netlify.app" }));
+// app.use(cors({ origin: "https://fed-storefront-frontend-dhanuja.netlify.app" }));
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoryRouter);
