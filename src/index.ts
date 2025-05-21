@@ -24,8 +24,7 @@ app.post(
 
 app.use(express.json());
 app.use(clerkMiddleware());
-// app.use(cors({ origin: "https://fed-storefront-frontend-dhanuja.netlify.app" }));
-app.use(cors({ origin: process.env.FRONTEND_URL }));
+app.use(cors({ origin: "https://fed-storefront-frontend-dhanuja.netlify.app" }));
 
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoryRouter);
